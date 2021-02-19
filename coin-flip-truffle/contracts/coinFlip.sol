@@ -8,6 +8,7 @@ contract coinFlip is Ownable{
 
   function deposit() public payable onlyOwner returns(uint){
     balance += msg.value;
+    assert(balance == address(this).balance);
     return(balance);
   }
 
