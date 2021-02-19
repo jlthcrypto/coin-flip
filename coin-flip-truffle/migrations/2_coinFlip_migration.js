@@ -1,7 +1,7 @@
 const coinFlip = artifacts.require("coinFlip");
 
 module.exports = function(deployer, network, accounts) {
-  deployer.deploy(coinFlip, {from:acounts[1]});
+  deployer.deploy(coinFlip);
 
 
   /*
