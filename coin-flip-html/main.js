@@ -14,7 +14,7 @@ $(document).ready(async function(){
       placeBet(false);
     });
     $("#withdrawWinnings").click(function(){
-      withdrawWinnings();
+      withdrawWinnings(accounts);
     });
 
     //Display Contract Balance
@@ -68,17 +68,19 @@ function placeBet(_choice){
   });
 };
 
-function withdrawWinnings(){
+function withdrawWinnings(accounts){
   let withdrawWinnings = contractInstance.methods.withdrawWinnings();
   withdrawWinnings.send()
   .then(async function(){
+    let balance = await contractInstance.methods.getBalance().call();
+    $("#contractBalance").text(web3.utils.fromWei(balance.toString(), "ether"));
     let winnings = await contractInstance.methods.playerLog(accounts[0]).call();
     $("#playerWinnings").text(web3.utils.fromWei(winnings.totalWithdrawable.toString(), "ether"));
   });
 };
 
 //Console only functions; intended for contract owner
-function deposit(_amount){
+function deposit(_amount){//Input deposit amount as string, ex.("0.5")
   let deposit = contractInstance.methods.deposit();
   var config = {value: web3.utils.toWei(_amount, "ether")};
   deposit.send(config)
@@ -88,7 +90,7 @@ function deposit(_amount){
   });
 };
 
-function withdrawFunds(){
+function withdrawFunds(){//Withdraws everything
   let withdrawFunds = contractInstance.methods.withdrawFunds();
   withdrawFunds.send()
   .then(async function(){
