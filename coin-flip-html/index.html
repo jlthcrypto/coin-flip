@@ -10,26 +10,37 @@
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script type="text/javascript" src="./abi.js"></script>
     <script type="text/javascript" src="./main.js"></script>
-
   </head>
 
   <body>
 
     <div>
       <h1>COIN FLIP</h1>
+      <h3>Contract Balance: <span id ="contractBalance"></span> Ether</h3>
+      <h5>One game at a time per user, cannot play while waiting for results</h5>
     </div>
     <div>
-      <input id="bet" placeholder="INPUT BET" size="30px"/>
+      <h3>Bet: (Must be less than or equal to half of contract balance)</h3>
+      <input id="bet" placeholder="INPUT BET VALUE IN ETHER" size="30px"/>
+      <h5>Note: Oracle Fees are subtracted from player's total bet</h5>
     </div>
     <div>
       <button id="heads">BET HEADS</button>
       <button id="tails">BET TAILS</button>
     </div>
     <div>
-      <h3>COIN: <span id="coin">HEADS/TAILS</span></h3>
+      <h2>CURRENT GAME DETAILS<h2>
+      <h3>Oracle Query ID: <span id='queryId'></span></h3>
+      <h3>Choice: <span id="choice"></span></h3>
+      <h3>Flip Result: <span id="result"></span></h3>
     </div>
     <div>
-      <h3>RESULT: <span id="result">WIN/LOSE</span></h3>
+      <h2>PLAYER INFO</h2>
+      <h3>Player Address: <span id='playerAddress'></span></h3>
+      <h3>Total Winnings Withdrawable: <span id='playerWinnings'></span> Ether</h3>
+    </div>
+    <div>
+      <button id="withdrawWinnings">Withdraw Winnings</button>
     </div>
   </body>
 </html>
