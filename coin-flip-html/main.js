@@ -1,6 +1,6 @@
 var web3 = new Web3(Web3.givenProvider);
 var contractInstance;
-const contract = "0xA31fcA6D9460Ce55eb9382F54e2839a889D96Fbd"
+const contract = "0x0860696999baf41b9D433E329aa079669dB141f8"
 $(document).ready(async function(){
     const accounts = await connectMetamask();
     contractInstance = new web3.eth.Contract(abi, contract, {from: accounts[0]});
