@@ -114,7 +114,8 @@ contract coinFlip is Ownable, usingProvable
       emit flipResult("You lose!");
     }
     queryLog[_queryId].isUpdating = false;
-    playerLog[msg.sender].isPlaying = false;
+    playerLog[queryLog[_queryId].player].isPlaying = false;
+
     emit callbackReply(queryLog[_queryId]);
   }
 
