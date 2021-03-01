@@ -55,7 +55,7 @@ function placeBet(_choice){
   //Call smart contract function
   let update = contractInstance.methods.update(_choice);
   update.send(config)
-  .then(function(){
+  .then(async function(){
     if(_choice == true){
       $("#choice").text("Heads");
     }
