@@ -61,6 +61,8 @@ function placeBet(_choice){
     }
     else $("#choice").text("Tails");
 
+    let balance = await contractInstance.methods.getBalance().call();
+    $("#contractBalance").text(web3.utils.fromWei(balance.toString(), "ether"));
     $("#result").text("Waiting for result...")
     alert("Transaction pending");
   });
