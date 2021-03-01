@@ -73,14 +73,14 @@ function withdrawWinnings(){
   withdrawWinnings.send()
   .then(async function(){
     let winnings = await contractInstance.methods.playerLog(accounts[0]).call();
-    $("#playerWinnings").text(web3.utils.fromWei(winnings.toString(), "ether"));
+    $("#playerWinnings").text(web3.utils.fromWei(winnings.totalWithdrawable.toString(), "ether"));
   });
 };
 
 //Console only functions; intended for contract owner
-function deposit(){
+function deposit(_amount){
   let deposit = contractInstance.methods.deposit();
-  var config = {value: web3.utils.toWei("0.1", "ether")};
+  var config = {value: web3.utils.toWei(_amount, "ether")};
   deposit.send(config)
   .then(async function(){
     let balance = await contractInstance.methods.getBalance().call();
